@@ -1,8 +1,9 @@
 import React from "react";
+import PizzasList from "./modules/pizzaList/components/pizzaList";
 
 const App = (): JSX.Element => (
   <>
-    <p>App</p>
+    <PizzasList />
   </>
 );
 

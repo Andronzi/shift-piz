@@ -4,11 +4,11 @@
     "typeRoots": ["src/types/"],
     "paths": {
       "types/*": ["src/types/*"],
-      "@Components/*": ["src/Components/*"],
-      "@images/*": ["src/Resources/images/*"],
-      "@redux/*": ["src/redux/*"],
+      "@modules/*": ["src/modules/*"],
+      "@assets/*": ["src/assets/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@store/*": ["src/store/*"],
       "@src/*": ["src/*"],
-      "@API/*": ["src/API/*"]
     },
     "allowJs": true, // Allow JavaScript files to be compiled
     "skipLibCheck": true, // Skip type checking of all declaration files

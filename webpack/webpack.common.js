@@ -32,11 +32,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@Components": path.resolve(__dirname, "..", "src/Components"),
-      "@images": path.resolve(__dirname, "..", "src/Resources/images"),
-      "@redux": path.resolve(__dirname, "..", "src/redux"),
+      "@modules": path.resolve(__dirname, "..", "src/modules"),
+      "@assets": path.resolve(__dirname, "..", "src/assets"),
+      "@images": path.resolve(__dirname, "..", "src/assets/images"),
+      "@store": path.resolve(__dirname, "..", "src/store"),
       "@src": path.resolve(__dirname, "..", "src"),
-      "@API": path.resolve(__dirname, "..", "src/API"),
     },
     extensions: [
       ".wasm",
