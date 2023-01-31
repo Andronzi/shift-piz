@@ -1,5 +1,9 @@
 const arrayToText = (ingredients: string[]) => {
-    return ingredients.join(", ").substring(0, 60) + "..."
+    if (document.documentElement.clientWidth < 640) {
+        return ingredients.join(", ").substring(0, 40) + "..."
+    } else {
+        return ingredients.join(", ").substring(0, 60) + "..."
+    }
 }
 
 export default arrayToText;

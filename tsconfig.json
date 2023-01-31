@@ -6,9 +6,12 @@
       "types/*": ["src/types/*"],
       "@modules/*": ["src/modules/*"],
       "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"],
       "@images/*": ["src/assets/images/*"],
+      "@icons/*": ["src/assets/icons/*"],
       "@store/*": ["src/store/*"],
       "@src/*": ["src/*"],
+      "@loaders/*": ["src/loaders/*"]
     },
     "allowJs": true, // Allow JavaScript files to be compiled
     "skipLibCheck": true, // Skip type checking of all declaration files

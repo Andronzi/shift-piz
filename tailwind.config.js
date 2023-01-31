@@ -9,7 +9,10 @@ module.exports = {
         sm: ['14px', '16px'],
         md: ['16px', '18px'],
         lg: ['18px', '20px'],
-        xl: ['22px', '24px']
+        xl: ['22px', '24px'],
+        "2xl": ['32px', '36px'],
+        "4xl": ['48px', '56px'],
+        "7xl": ['96px', '112px']
       },
 
       screens: {
@@ -28,7 +31,7 @@ module.exports = {
 
       extend: {
         colors: {
-          "black": "#000000",
+          "black": "#181818",
           "lightgrey": "#EAEAEA",
           "darkgrey": "#5C5C5C",
           "white": "#FFFFFF"
@@ -36,7 +39,9 @@ module.exports = {
       },
 
       fontFamily: {
-        "nunito": ["Nunito"]
+        "italiana": ["Italiana"],
+        "nunito": ["Nunito"],
+        "montserrat": ["Montserrat"]
       },
 
       maxWidth: {

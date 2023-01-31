@@ -40,4 +40,4 @@ type PizzasState = {
     pizzas: Pizza[];
 } & MetaStateData;
 
-export { Pizza, PizzasState };
+export { Pizza, PizzasState }

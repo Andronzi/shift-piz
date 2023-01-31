@@ -32,9 +32,12 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@pages": path.resolve(__dirname, "..", "src/pages"),
       "@modules": path.resolve(__dirname, "..", "src/modules"),
       "@assets": path.resolve(__dirname, "..", "src/assets"),
       "@images": path.resolve(__dirname, "..", "src/assets/images"),
+      "@icons": path.resolve(__dirname, "..", "src/assets/icons"),
+      "@loaders": path.resolve(__dirname, "..", "src/loaders"),
       "@store": path.resolve(__dirname, "..", "src/store"),
       "@src": path.resolve(__dirname, "..", "src"),
     },
