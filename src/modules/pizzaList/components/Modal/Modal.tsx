@@ -15,14 +15,11 @@ const Modal = () => {
       if ((e.charCode || e.keyCode) === 27) {
         dispatch(changeShow(false));
       }
-      console.log("current");
     },
     [dispatch],
   );
 
   React.useEffect(() => {
-    console.log("effect");
-
     //@ts-ignore
     document.body.addEventListener("keydown", closeOnEscapeKeyDownRef.current);
     return () => {
