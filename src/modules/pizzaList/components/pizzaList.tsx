@@ -6,7 +6,7 @@ import { pizzaContent } from "../constants/pizzaListClasses";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import PizzaCard from "./pizzaCard";
 import useCart, { useCartReturn } from "../hooks/useCart";
-import { deletePizzaFromCart, increasePizza } from "@modules/cart";
+import { deletePizzaFromCart, increasePizza } from "@modules/pizzaList";
 
 const PizzasList = () => {
   const dispatch = useAppDispatch();
