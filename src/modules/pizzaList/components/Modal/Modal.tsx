@@ -15,6 +15,7 @@ const Modal = () => {
       if ((e.charCode || e.keyCode) === 27) {
         dispatch(changeShow(false));
       }
+      console.log("current");
     },
     [dispatch],
   );
@@ -24,7 +25,8 @@ const Modal = () => {
 
     //@ts-ignore
     document.body.addEventListener("keydown", closeOnEscapeKeyDownRef.current);
-    return function cleanUp() {
+    return () => {
+      //run after unmount
       document.body.removeEventListener(
         "keydown",
         //@ts-ignore
@@ -32,28 +34,27 @@ const Modal = () => {
       );
     };
   }, [closeOnEscapeKeyDownRef.current]);
-  /* after component will remount link to function will change and old
-     eventListener will remove and new eventListener will be created */
 
+  if (!isShow) {
+    return null;
+  }
+
+  //Перенесу большую чась в компонент ModalContent
   return (
-    <>
-      {isShow ? (
-        <div
-          onClick={() => dispatch(changeShow(false))}
-          className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center">
-          <div
-            onClick={e => e.stopPropagation()}
-            className="bg-white p-4 rounded">
-            <h3>Modal title</h3>
+    <div
+      onClick={() => dispatch(changeShow(false))}
+      className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center">
+      <div
+        onClick={e => e.stopPropagation()}
+        className="bg-white p-4 rounded">
+        <h3>Modal title</h3>
 
-            <div className="modal-body">This is modal content</div>
-            <div className="modal-footer">
-              <button onClick={() => dispatch(changeShow(false))}>close</button>
-            </div>
-          </div>
+        <div className="modal-body">This is modal content</div>
+        <div className="modal-footer">
+          <button onClick={() => dispatch(changeShow(false))}>close</button>
         </div>
-      ) : null}
-    </>
+      </div>
+    </div>
   );
 };
 
