@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/errorPage/errorPage";
 import "./index.css";
 import { store } from "./store/store";
-import PizzasList from "@modules/pizzaList/components/pizzaList";
 import Root from "@pages/root/root";
+import Menu from "@pages/menu/menu";
 
 //Пока нет главной страницы будет так
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/menu",
-        element: <PizzasList />,
+        element: <Menu />,
       },
     ],
   },

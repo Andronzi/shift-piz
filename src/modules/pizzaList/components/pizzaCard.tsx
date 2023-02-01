@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import arrayToText from "../helpers/arrayToText";
 import { classes } from "../constants/pizzaCardClasses";
 
@@ -7,6 +7,7 @@ type PizzaCardProps = {
   name: string;
   ingredients: string[];
   price: number;
+  showModal: MouseEventHandler<HTMLButtonElement>;
 };
 
 const PizzaCard: React.FC<PizzaCardProps> = ({
@@ -14,6 +15,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
   name,
   ingredients,
   price,
+  showModal,
 }) => {
   return (
     <div className={classes.cardWrapper}>
@@ -26,7 +28,11 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
         <p className={classes.ingredients}>{arrayToText(ingredients)}</p>
         <div className={classes.downSticky}>
           <p className={classes.price}>от {price} ₽</p>
-          <button className={classes.chooseButton}>выбрать</button>
+          <button
+            onClick={showModal}
+            className={classes.chooseButton}>
+            выбрать
+          </button>
         </div>
       </div>
     </div>

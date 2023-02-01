@@ -6,15 +6,19 @@ import { pizzaContent } from "../constants/pizzaListClasses";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import PizzaCard from "./pizzaCard";
 import useCart, { useCartReturn } from "../hooks/useCart";
-import { deletePizzaFromCart, increasePizza } from "@modules/pizzaList";
+import {
+  changeShow,
+  deletePizzaFromCart,
+  increasePizza,
+} from "@modules/pizzaList";
 
-const PizzasList = () => {
+const PizzasList: React.FC = () => {
   const dispatch = useAppDispatch();
   const pizzaState = useAppSelector((state: RootState) => state.pizza);
 
   React.useEffect(() => {
     dispatch(getPizzas(""));
-  }, []);
+  }, [dispatch]);
 
   //just for test
   const handleClick = () => {
@@ -70,6 +74,7 @@ const PizzasList = () => {
               name={pizza.name}
               ingredients={pizza.ingredients}
               price={pizza.price.default}
+              showModal={() => dispatch(changeShow(true))}
             />
           );
         })}

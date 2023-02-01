@@ -40,4 +40,8 @@ type PizzasState = {
     pizzas: Pizza[];
 } & MetaStateData;
 
-export { Pizza, PizzasState }
+type ModalState = {
+    isShow: boolean;
+}
+
+export { Pizza, PizzasState, ModalState }
