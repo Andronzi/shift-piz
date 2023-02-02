@@ -12,12 +12,6 @@ const Modal = () => {
     ref.current?.focus();
   }, [isShow]);
 
-  const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
-    if ((e.charCode || e.keyCode) === 27) {
-      dispatch(changeShow(false));
-    }
-  };
-
   if (!isShow) {
     return null;
   }
