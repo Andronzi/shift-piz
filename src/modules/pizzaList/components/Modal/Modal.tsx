@@ -6,31 +6,17 @@ import React from "react";
 const Modal = () => {
   const dispatch = useAppDispatch();
   const { isShow } = useAppSelector((state: RootState) => state.modal);
-
-  const closeOnEscapeKeyDownRef = React.useRef();
-
-  // @ts-ignore
-  closeOnEscapeKeyDownRef.current = React.useCallback(
-    (e: KeyboardEvent) => {
-      if ((e.charCode || e.keyCode) === 27) {
-        dispatch(changeShow(false));
-      }
-    },
-    [dispatch],
-  );
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
-    // @ts-ignore
-    document.body.addEventListener("keydown", closeOnEscapeKeyDownRef.current);
-    return () => {
-      // run after unmount
-      document.body.removeEventListener(
-        "keydown",
-        // @ts-ignore
-        closeOnEscapeKeyDownRef.current,
-      );
-    };
-  }, []);
+    ref.current?.focus();
+  }, [isShow]);
+
+  const closeOnEscapeKeyDown = (e: KeyboardEvent) => {
+    if ((e.charCode || e.keyCode) === 27) {
+      dispatch(changeShow(false));
+    }
+  };
 
   if (!isShow) {
     return null;
@@ -39,8 +25,11 @@ const Modal = () => {
   // Перенесу большую чась в компонент ModalContent
   return (
     <div
-      className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center"
-      onClick={() => dispatch(changeShow(false))}>
+      ref={ref}
+      className="fixed left-0 top-0 right-0 bottom-0 bg-black/5 flex items-center justify-center"
+      onClick={() => dispatch(changeShow(false))}
+      onKeyDown={closeOnEscapeKeyDown}
+      tabIndex={0}>
       <div
         className="bg-white p-4 rounded"
         onClick={e => e.stopPropagation()}>
