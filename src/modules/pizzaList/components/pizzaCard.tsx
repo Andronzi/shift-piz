@@ -1,27 +1,17 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import arrayToText from "../helpers/arrayToText";
 import { classes } from "../constants/pizzaCardClasses";
+import { useAppDispatch } from "@store/hooks";
+import { changeShow } from "../store/modalReducer";
+import { Pizza } from "../store/interfaces";
 
-type PizzaCardProps = {
-  imageSrc: string;
-  name: string;
-  ingredients: string[];
-  price: number;
-  showModal: MouseEventHandler<HTMLButtonElement>;
-};
-
-const PizzaCard: React.FC<PizzaCardProps> = ({
-  imageSrc,
-  name,
-  ingredients,
-  price,
-  showModal,
-}) => {
+const PizzaCard: React.FC<Pizza> = ({ img, name, ingredients, price }) => {
+  const dispatch = useAppDispatch();
   return (
     <div className={classes.cardWrapper}>
       <img
         className={classes.image}
-        src={imageSrc}
+        src={img}
       />
       <div className={classes.infoWrapper}>
         <p className={classes.name}>{name}</p>
@@ -29,7 +19,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
         <div className={classes.downSticky}>
           <p className={classes.price}>от {price} ₽</p>
           <button
-            onClick={showModal}
+            onClick={() => dispatch(changeShow(true))}
             className={classes.chooseButton}>
             выбрать
           </button>

@@ -6,6 +6,7 @@ import { pizzaContent } from "../constants/pizzaListClasses";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import PizzaCard from "./pizzaCard";
 import useCart, { useCartReturn } from "../hooks/useCart";
+import { Pizza } from "../store/interfaces";
 import {
   changeShow,
   deletePizzaFromCart,
@@ -17,7 +18,7 @@ const PizzasList: React.FC = () => {
   const pizzaState = useAppSelector((state: RootState) => state.pizza);
 
   React.useEffect(() => {
-    dispatch(getPizzas());
+    dispatch(getPizzas(""));
   }, [dispatch]);
 
   //just for test
@@ -66,7 +67,7 @@ const PizzasList: React.FC = () => {
   return (
     <>
       <div className={pizzaContent}>
-        {pizzaState.pizzas?.map(pizza => {
+        {pizzaState.pizzas?.map((pizza: Pizza) => {
           return (
             <PizzaCard
               key={pizza.id}
@@ -74,7 +75,6 @@ const PizzasList: React.FC = () => {
               name={pizza.name}
               ingredients={pizza.ingredients}
               price={pizza.price.default}
-              showModal={() => dispatch(changeShow(true))}
             />
           );
         })}
