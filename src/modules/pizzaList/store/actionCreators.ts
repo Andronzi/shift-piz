@@ -1,6 +1,6 @@
 import { AppDispatch } from "@store/store";
-import axios from "axios";
-import { IClassificationType, Pizza } from "./interfaces";
+import { getPizzas } from "../api/getPizzas";
+import { IClassificationType } from "./interfaces";
 import { pizzaSlice } from "./pizzaReducer";
 
 export const fetchPizzas =
@@ -8,9 +8,7 @@ export const fetchPizzas =
   async (dispatch: AppDispatch) => {
     try {
       dispatch(pizzaSlice.actions.pizzasFetching());
-      const response = await axios.get<Pizza[]>(
-        `https://shift-winter-2023-backend.onrender.com/api/pizza?${classification}`,
-      );
+      const response = await getPizzas(classification);
       dispatch(pizzaSlice.actions.pizzasFetchingSuccess(response.data));
     } catch (err: any) {
       dispatch(pizzaSlice.actions.pizzasFetchingError(err.message));

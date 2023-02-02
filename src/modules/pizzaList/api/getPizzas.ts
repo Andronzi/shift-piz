@@ -1,18 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { url } from "../constants/requestUrl";
-import { IClassificationType } from "../store/interfaces";
+import instance from "@src/axiosConfig";
+import { IClassificationType, Pizza } from "../store/interfaces";
 
-export const getPizzas = createAsyncThunk(
-  "getPizzas",
-  async (classifications: keyof IClassificationType, thunkAPI?) => {
-    try {
-      const response = await axios.get(
-        `${url}?classifications=${classifications}`,
-      );
-      return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err);
-    }
-  },
-);
+export const getPizzas = (classifications?: keyof IClassificationType) =>
+  instance.get<Pizza[]>("/pizza", { params: { classifications } });
