@@ -11,7 +11,7 @@
       "@icons/*": ["src/assets/icons/*"],
       "@store/*": ["src/store/*"],
       "@src/*": ["src/*"],
-      "@loaders/*": ["src/loaders/*"]
+      "@loaders/*": ["src/components/loaders/*"]
     },
     "allowJs": true, // Allow JavaScript files to be compiled
     "skipLibCheck": true, // Skip type checking of all declaration files

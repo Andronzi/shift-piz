@@ -1,4 +1,4 @@
-import PizzaLoader from "@loaders/PizzaLoaders";
+import PizzaLoader from "@src/components/loaders/PizzaLoaders";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { RootState } from "@store/store";
 import React from "react";

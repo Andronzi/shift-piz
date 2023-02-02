@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('./fonts.css');
+@import url('./reset.css');
+
+.errorContentWrapper {
+  height: calc(100vh - 5rem);
+}

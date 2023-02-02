@@ -4,7 +4,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
+import "./css/index.css";
 import ErrorPage from "./pages/errorPage/errorPage";
 import { store } from "./store/store";
 
