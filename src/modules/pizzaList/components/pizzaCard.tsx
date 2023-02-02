@@ -17,7 +17,7 @@ const PizzaCard: React.FC<Pizza> = ({ img, name, ingredients, price }) => {
         <p className={classes.name}>{name}</p>
         <p className={classes.ingredients}>{arrayToText(ingredients)}</p>
         <div className={classes.downSticky}>
-          <p className={classes.price}>от {price} ₽</p>
+          <p className={classes.price}>от {price.default} ₽</p>
           <button
             onClick={() => dispatch(changeShow(true))}
             className={classes.chooseButton}>

@@ -7,11 +7,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 import PizzaCard from "./pizzaCard";
 import useCart, { useCartReturn } from "../hooks/useCart";
 import { Pizza } from "../store/interfaces";
-import {
-  changeShow,
-  deletePizzaFromCart,
-  increasePizza,
-} from "@modules/pizzaList";
+import { deletePizzaFromCart, increasePizza } from "@modules/pizzaList";
 
 const PizzasList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -71,10 +67,12 @@ const PizzasList: React.FC = () => {
           return (
             <PizzaCard
               key={pizza.id}
-              imageSrc={pizza.img}
+              id={pizza.id}
+              img={pizza.img}
               name={pizza.name}
               ingredients={pizza.ingredients}
-              price={pizza.price.default}
+              price={pizza.price}
+              classifications={pizza.classifications}
             />
           );
         })}
