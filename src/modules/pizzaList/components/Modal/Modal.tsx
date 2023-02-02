@@ -1,7 +1,7 @@
-import React from "react";
 import { changeShow } from "@modules/pizzaList";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { RootState } from "@store/store";
+import React from "react";
 
 const Modal = () => {
   const dispatch = useAppDispatch();
@@ -9,7 +9,7 @@ const Modal = () => {
 
   const closeOnEscapeKeyDownRef = React.useRef();
 
-  //@ts-ignore
+  // @ts-ignore
   closeOnEscapeKeyDownRef.current = React.useCallback(
     (e: KeyboardEvent) => {
       if ((e.charCode || e.keyCode) === 27) {
@@ -20,30 +20,30 @@ const Modal = () => {
   );
 
   React.useEffect(() => {
-    //@ts-ignore
+    // @ts-ignore
     document.body.addEventListener("keydown", closeOnEscapeKeyDownRef.current);
     return () => {
-      //run after unmount
+      // run after unmount
       document.body.removeEventListener(
         "keydown",
-        //@ts-ignore
+        // @ts-ignore
         closeOnEscapeKeyDownRef.current,
       );
     };
-  }, [closeOnEscapeKeyDownRef.current]);
+  }, []);
 
   if (!isShow) {
     return null;
   }
 
-  //Перенесу большую чась в компонент ModalContent
+  // Перенесу большую чась в компонент ModalContent
   return (
     <div
-      onClick={() => dispatch(changeShow(false))}
-      className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center">
+      className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center"
+      onClick={() => dispatch(changeShow(false))}>
       <div
-        onClick={e => e.stopPropagation()}
-        className="bg-white p-4 rounded">
+        className="bg-white p-4 rounded"
+        onClick={e => e.stopPropagation()}>
         <h3>Modal title</h3>
 
         <div className="modal-body">This is modal content</div>

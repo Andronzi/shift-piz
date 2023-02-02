@@ -1,14 +1,14 @@
+import Menu from "@pages/menu/menu";
+import Root from "@pages/root/root";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/errorPage/errorPage";
 import "./index.css";
+import ErrorPage from "./pages/errorPage/errorPage";
 import { store } from "./store/store";
-import Root from "@pages/root/root";
-import Menu from "@pages/menu/menu";
 
-//Пока нет главной страницы будет так
+// Пока нет главной страницы будет так
 const router = createBrowserRouter([
   {
     path: "/",

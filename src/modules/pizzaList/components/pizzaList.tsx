@@ -1,84 +1,38 @@
 import PizzaLoader from "@loaders/PizzaLoaders";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { RootState } from "@store/store";
 import React from "react";
-import { getPizzas } from "../api/getPizzas";
 import { pizzaContent } from "../constants/pizzaListClasses";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import PizzaCard from "./pizzaCard";
-import useCart, { useCartReturn } from "../hooks/useCart";
+import { fetchPizzas } from "../store/actionCreators";
 import { Pizza } from "../store/interfaces";
-import { deletePizzaFromCart, increasePizza } from "@modules/pizzaList";
+import PizzaCard from "./pizzaCard";
 
 const PizzasList: React.FC = () => {
   const dispatch = useAppDispatch();
   const pizzaState = useAppSelector((state: RootState) => state.pizza);
 
   React.useEffect(() => {
-    dispatch(getPizzas(""));
+    dispatch(fetchPizzas());
   }, [dispatch]);
 
-  //just for test
-  const handleClick = () => {
-    increase({
-      id: 1,
-      name: "Буженина с клюквенным соусом",
-      ingredients: [
-        "запеченная буженина из свинины",
-        "клюквенный соус",
-        "брусника",
-        "красный лук",
-        "моцарелла",
-        "фирменный соус альфредо",
-      ],
-      img: "https://dodopizza-a.akamaihd.net/static/Img/Products/421b5f7975dd422ea59dbf1d9e1b1b95_138x138.jpeg",
-      price: {
-        default: 539,
-        size: {
-          small: 0,
-          medium: 100,
-          large: 200,
-        },
-        crust: {
-          cheesy: 150,
-          cheesySausage: 200,
-        },
-      },
-      classifications: {
-        new: true,
-        spicy: false,
-        vegetarian: false,
-      },
-    });
-  };
-
-  const { increase, deletePizza }: useCartReturn = useCart(
-    increasePizza,
-    deletePizzaFromCart,
-  );
-
-  if (!pizzaState.loading || pizzaState.loading === "pending") {
+  if (pizzaState.isLoading) {
     return <PizzaLoader />;
   }
 
   return (
-    <>
-      <div className={pizzaContent}>
-        {pizzaState.pizzas?.map((pizza: Pizza) => {
-          return (
-            <PizzaCard
-              key={pizza.id}
-              id={pizza.id}
-              img={pizza.img}
-              name={pizza.name}
-              ingredients={pizza.ingredients}
-              price={pizza.price}
-              classifications={pizza.classifications}
-            />
-          );
-        })}
-      </div>
-      <button onClick={handleClick}>click</button>
-    </>
+    <div className={pizzaContent}>
+      {pizzaState.pizzas.map((pizza: Pizza) => (
+        <PizzaCard
+          key={pizza.id}
+          classifications={pizza.classifications}
+          id={pizza.id}
+          img={pizza.img}
+          ingredients={pizza.ingredients}
+          name={pizza.name}
+          price={pizza.price}
+        />
+      ))}
+    </div>
   );
 };
 

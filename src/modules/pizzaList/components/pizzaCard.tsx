@@ -1,15 +1,16 @@
-import React from "react";
-import arrayToText from "../helpers/arrayToText";
-import { classes } from "../constants/pizzaCardClasses";
 import { useAppDispatch } from "@store/hooks";
-import { changeShow } from "../store/modalReducer";
+import React from "react";
+import { classes } from "../constants/pizzaCardClasses";
+import arrayToText from "../helpers/arrayToText";
 import { Pizza } from "../store/interfaces";
+import { changeShow } from "../store/modalReducer";
 
 const PizzaCard: React.FC<Pizza> = ({ img, name, ingredients, price }) => {
   const dispatch = useAppDispatch();
   return (
     <div className={classes.cardWrapper}>
       <img
+        alt="pizza"
         className={classes.image}
         src={img}
       />
@@ -19,8 +20,8 @@ const PizzaCard: React.FC<Pizza> = ({ img, name, ingredients, price }) => {
         <div className={classes.downSticky}>
           <p className={classes.price}>от {price.default} ₽</p>
           <button
-            onClick={() => dispatch(changeShow(true))}
-            className={classes.chooseButton}>
+            className={classes.chooseButton}
+            onClick={() => dispatch(changeShow(true))}>
             выбрать
           </button>
         </div>

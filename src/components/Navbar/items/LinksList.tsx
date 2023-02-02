@@ -4,44 +4,42 @@ import {
   listLi,
   mobileLinksList,
   notMobileLinksList,
+  link,
 } from "../constants/NavbarClasses";
-import { link } from "../constants/NavbarClasses";
 
 interface LinksListProps {
   isMobile: boolean;
   linkCallback: MouseEventHandler<HTMLAnchorElement> | undefined;
 }
 
-const LinksList: React.FC<LinksListProps> = ({ isMobile, linkCallback }) => {
-  return (
-    <ul className={`${isMobile ? mobileLinksList : notMobileLinksList}`}>
-      <li className={listLi}>
-        <Link
-          to="/main"
-          onClick={linkCallback}
-          className={link}>
-          Главная
-        </Link>
-      </li>
+const LinksList: React.FC<LinksListProps> = ({ isMobile, linkCallback }) => (
+  <ul className={`${isMobile ? mobileLinksList : notMobileLinksList}`}>
+    <li className={listLi}>
+      <Link
+        className={link}
+        onClick={linkCallback}
+        to="/main">
+        Главная
+      </Link>
+    </li>
 
-      <li className={listLi}>
-        <Link
-          to="/menu"
-          onClick={linkCallback}
-          className={link}>
-          Меню
-        </Link>
-      </li>
-      <li className={listLi}>
-        <Link
-          to="/orders"
-          onClick={linkCallback}
-          className={link}>
-          Заказы
-        </Link>
-      </li>
-    </ul>
-  );
-};
+    <li className={listLi}>
+      <Link
+        className={link}
+        onClick={linkCallback}
+        to="/menu">
+        Меню
+      </Link>
+    </li>
+    <li className={listLi}>
+      <Link
+        className={link}
+        onClick={linkCallback}
+        to="/orders">
+        Заказы
+      </Link>
+    </li>
+  </ul>
+);
 
 export default LinksList;

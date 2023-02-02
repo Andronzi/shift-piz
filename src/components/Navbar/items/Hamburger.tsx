@@ -29,7 +29,7 @@ const Hamburger = () => {
       {isActive ? (
         <div className={mobileLinkListWrapper}>
           <LinksList
-            isMobile={true}
+            isMobile
             linkCallback={handleLinkClick}
           />
         </div>

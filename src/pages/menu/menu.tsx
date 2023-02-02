@@ -1,13 +1,11 @@
+import { Modal, PizzasList } from "@modules/pizzaList";
 import React from "react";
-import { PizzasList, Modal } from "@modules/pizzaList";
 
-const Menu = () => {
-  return (
-    <>
-      <PizzasList />
-      <Modal />
-    </>
-  );
-};
+const Menu = () => (
+  <>
+    <PizzasList />
+    <Modal />
+  </>
+);
 
 export default Menu;

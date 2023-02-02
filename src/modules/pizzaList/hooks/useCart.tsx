@@ -2,7 +2,7 @@ import { useAppDispatch } from "@store/hooks";
 import { OutsideHighOrderFunctionForStore } from "../interfaces/functions";
 import { Pizza } from "../store/interfaces";
 
-export interface useCartReturn {
+export interface UseCartCallbacks {
   increase: (action: any) => any;
   deletePizza: (action: any) => any;
 }
@@ -10,14 +10,14 @@ export interface useCartReturn {
 const useCart: OutsideHighOrderFunctionForStore = (
   increasePizza,
   deletePizzaFromCart,
-): useCartReturn => {
+): UseCartCallbacks => {
   const dispatch = useAppDispatch();
 
   return {
-    increase: function (pizza: Pizza) {
+    increase(pizza: Pizza) {
       dispatch(increasePizza(pizza));
     },
-    deletePizza: function (pizza: Pizza) {
+    deletePizza(pizza: Pizza) {
       dispatch(deletePizzaFromCart(pizza));
     },
   };

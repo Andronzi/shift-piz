@@ -1,47 +1,47 @@
 import { MetaStateData } from "@src/store/interfaces";
 
-type Sizes = {
-    small: number;
-    medium: number;
-    large: number;
-}
-
-type Crusts = { 
-    cheesy: number; 
-    cheesySausage: number 
+type ISizeType = {
+  small: number;
+  medium: number;
+  large: number;
 };
 
-type Classifications = {
-    new: boolean,
-    spicy: boolean, 
-    vegetarian: boolean
+type ICrustType = {
+  cheesy: number;
+  cheesySausage: number;
 };
 
-type ReadOnlySettings<T>  = {
-    readonly [K in keyof T]: T[K];
-}
+export type IClassificationType = {
+  new: boolean;
+  spicy: boolean;
+  vegetarian: boolean;
+};
 
-type PriceObject = {
-    default: number;
-    size: ReadOnlySettings<Sizes>;
-    crust: ReadOnlySettings<Crusts>;
-}
+type ReadOnlySettings<T> = {
+  readonly [K in keyof T]: T[K];
+};
+
+export type IPriceType = {
+  default: number;
+  size: ReadOnlySettings<ISizeType>;
+  crust: ReadOnlySettings<ICrustType>;
+};
 
 type Pizza = {
-    id: number;
-    name: string;
-    ingredients: string[];
-    img: string;
-    price: PriceObject;
-    classifications: ReadOnlySettings<Classifications>;
-}
+  id: number;
+  name: string;
+  ingredients: string[];
+  img: string;
+  price: IPriceType;
+  classifications: ReadOnlySettings<IClassificationType>;
+};
 
 type PizzasState = {
-    pizzas: Pizza[];
+  pizzas: Pizza[];
 } & MetaStateData;
 
 type ModalState = {
-    isShow: boolean;
-}
+  isShow: boolean;
+};
 
-export { Pizza, PizzasState, ModalState }
+export { Pizza, PizzasState, ModalState };
