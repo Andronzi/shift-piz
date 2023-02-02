@@ -17,7 +17,7 @@ const PizzasList: React.FC = () => {
   const pizzaState = useAppSelector((state: RootState) => state.pizza);
 
   React.useEffect(() => {
-    dispatch(getPizzas(""));
+    dispatch(getPizzas());
   }, [dispatch]);
 
   //just for test

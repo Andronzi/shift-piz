@@ -1,17 +1,17 @@
 import { MetaStateData } from "@src/store/interfaces";
 
-type sizes = {
+type Sizes = {
     small: number;
     medium: number;
     large: number;
 }
 
-type crusts = { 
+type Crusts = { 
     cheesy: number; 
     cheesySausage: number 
 };
 
-type classifications = {
+type Classifications = {
     new: boolean,
     spicy: boolean, 
     vegetarian: boolean
@@ -21,10 +21,10 @@ type ReadOnlySettings<T>  = {
     readonly [K in keyof T]: T[K];
 }
 
-type priceObject = {
+type PriceObject = {
     default: number;
-    size: ReadOnlySettings<sizes>;
-    crust: ReadOnlySettings<crusts>;
+    size: ReadOnlySettings<Sizes>;
+    crust: ReadOnlySettings<Crusts>;
 }
 
 type Pizza = {
@@ -32,8 +32,8 @@ type Pizza = {
     name: string;
     ingredients: string[];
     img: string;
-    price: priceObject;
-    classifications: ReadOnlySettings<classifications>;
+    price: PriceObject;
+    classifications: ReadOnlySettings<Classifications>;
 }
 
 type PizzasState = {
