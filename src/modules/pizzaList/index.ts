@@ -14,3 +14,4 @@ export type { Pizza } from "./store/interfaces";
 export { increasePizza, deletePizzaFromCart };
 // exports to another modules
 export { pizzaReducer, modalReducer, Modal, changeShow, PizzasList };
+

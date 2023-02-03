@@ -5,7 +5,7 @@ import React from "react";
 import { pizzaContent } from "../constants/pizzaListClasses";
 import { fetchPizzas } from "../store/actionCreators";
 import { Pizza } from "../store/interfaces";
-import PizzaCard from "./pizzaCard";
+import PizzaCardWrapper from "./PizzaCardWrapper";
 
 const PizzasList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const PizzasList: React.FC = () => {
   return (
     <div className={pizzaContent}>
       {pizzaState.pizzas.map((pizza: Pizza) => (
-        <PizzaCard
+        <PizzaCardWrapper
           key={pizza.id}
           classifications={pizza.classifications}
           id={pizza.id}
