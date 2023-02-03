@@ -49,6 +49,7 @@ module.exports = {
         "phone-card": "12rem",
         "tablet-card": "16rem",
         "xs": "20rem",
+        "lg":	"32rem",
         "prose": "40ch",
         "screen-xl": "1280px"
       }
