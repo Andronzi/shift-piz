@@ -1,4 +1,8 @@
+import close from "@icons/close.png";
+import { increasePizza } from "@modules/cart";
 import { arrayToText } from "@modules/pizzaList/helpers/arrayToText";
+import Button from "@src/ui/button";
+import { useAppDispatch } from "@store/hooks";
 import React from "react";
 import { Pizza } from "../../store/interfaces";
 
@@ -18,6 +22,7 @@ const Modal = ({
   classifications,
 }: ModalProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   const closeOnEscapeKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Escape") {
@@ -43,15 +48,16 @@ const Modal = ({
       tabIndex={-1}>
       {/* нам не нужен получать доступ к этому элементу по index */}
       <div
-        className="bg-white p-4 rounded flex"
+        className="relative bg-white p-4 rounded-xl flex"
         onClick={e => e.stopPropagation()}
         role="button"
         tabIndex={-1}>
         <img
           alt={name}
+          className="w-48 h-48"
           src={img}
         />
-        <div className="max-w-lg">
+        <div className="max-w-lg ml-8">
           <h3 className="font-nunito font-medium text-2xl">{name}</h3>
 
           <p className="font-nunito text-sm max-w-xs mt-2">
@@ -64,7 +70,33 @@ const Modal = ({
             <div className="w-24 text-xs font-nunito text-center">Средняя</div>
             <div className="w-24 text-xs font-nunito text-center">Большая</div>
           </div>
-          <button onClick={() => setShow(false)}>close</button>
+          <Button
+            className="mt-4"
+            onClick={() =>
+              dispatch(
+                increasePizza({
+                  id,
+                  name,
+                  ingredients,
+                  img,
+                  price,
+                  classifications,
+                }),
+              )
+            }
+            type="button">
+            Добавить в корзину за {price.default} ₽
+          </Button>
+          <button
+            className="absolute top-2 right-2"
+            onClick={() => setShow(false)}
+            type="button">
+            <img
+              alt="закрыть"
+              className="w-5 h-5"
+              src={close}
+            />
+          </button>
         </div>
       </div>
     </div>
