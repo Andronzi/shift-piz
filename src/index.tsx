@@ -1,3 +1,4 @@
+import CartList from "@modules/cart/components/cartList";
 import Menu from "@pages/menu/menu";
 import Root from "@pages/root/root";
 import React from "react";
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/menu",
         element: <Menu />,
+      },
+      {
+        path: "/cart",
+        element: <CartList />,
       },
     ],
   },
