@@ -8,7 +8,7 @@ import "./css/index.css";
 import ErrorPage from "./pages/errorPage/errorPage";
 import { store } from "./store/store";
 
-// Пока нет главной страницы будет так
+// errorElement не обладает Navbar и Footer (надо будет решить эту проблему)
 const router = createBrowserRouter([
   {
     path: "/",
