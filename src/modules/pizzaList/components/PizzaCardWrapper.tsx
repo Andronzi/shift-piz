@@ -11,7 +11,7 @@ const PizzaCardWrapper: React.FC<Pizza> = ({
   ingredients,
   price,
 }) => {
-  const [show, setShow] = React.useState(false);
+  const [isShow, setIsShow] = React.useState(false);
   return (
     <>
       <PizzaCard
@@ -20,18 +20,18 @@ const PizzaCardWrapper: React.FC<Pizza> = ({
         img={img}
         ingredients={ingredients}
         name={name}
-        onButtonClick={React.useCallback(() => setShow(true), [setShow])}
+        onButtonClick={React.useCallback(() => setIsShow(true), [setIsShow])}
         price={price}
       />
       <Modal
         classifications={classifications}
+        closeModal={() => setIsShow(false)}
         id={id}
         img={img}
         ingredients={ingredients}
+        isShow={isShow}
         name={name}
         price={price}
-        setShow={setShow}
-        show={show}
       />
     </>
   );

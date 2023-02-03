@@ -7,13 +7,13 @@ import React from "react";
 import { Pizza } from "../../store/interfaces";
 
 type ModalProps = {
-  show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  isShow: boolean;
+  closeModal: () => void;
 } & Pizza;
 
 const Modal = ({
-  show,
-  setShow,
+  isShow,
+  closeModal,
   id,
   name,
   ingredients,
@@ -26,15 +26,15 @@ const Modal = ({
 
   const closeOnEscapeKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === "Escape") {
-      setShow(false);
+      closeModal();
     }
   };
 
   React.useEffect(() => {
     ref.current?.focus();
-  }, [show]);
+  }, [isShow]);
 
-  if (!show) {
+  if (!isShow) {
     return null;
   }
 
@@ -42,7 +42,7 @@ const Modal = ({
     <div
       ref={ref}
       className="fixed left-0 top-0 right-0 bottom-0 bg-black/50 flex items-center justify-center"
-      onClick={() => setShow(false)}
+      onClick={closeModal}
       onKeyDown={closeOnEscapeKeyDown}
       role="button"
       tabIndex={-1}>
@@ -89,7 +89,7 @@ const Modal = ({
           </Button>
           <button
             className="absolute top-2 right-2"
-            onClick={() => setShow(false)}
+            onClick={closeModal}
             type="button">
             <img
               alt="закрыть"
