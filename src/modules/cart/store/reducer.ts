@@ -1,5 +1,5 @@
-import { Pizza } from "@modules/pizzaList";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 import { CartPizza, CartState } from "./interfaces";
 
 const cartSlice = createSlice({
@@ -9,33 +9,57 @@ const cartSlice = createSlice({
     isLoading: false,
   } as CartState,
   reducers: {
-    increasePizza(state: CartState, action: PayloadAction<Pizza>) {
+    increasePizza(state: CartState, action: PayloadAction<CartPizza>) {
       const pizzasItems = state.pizzas.filter(
-        pizza => pizza.id === action.payload.id,
+        pizza =>
+          pizza.id === action.payload.id &&
+          pizza.priceValue === action.payload.priceValue,
       );
 
       if (pizzasItems?.length) {
         pizzasItems[0].amount += 1;
       } else {
-        const cartPizza = { ...action.payload } as CartPizza;
-
-        cartPizza.amount = 1;
-        state.pizzas?.push(cartPizza);
+        state.pizzas.push(action.payload);
       }
-    },
 
-    decreasePizza(state: CartState, action: PayloadAction<Pizza>) {
-      state.pizzas.forEach(pizza => {
-        if (pizza.id === action.payload.id) {
-          pizza.amount -= 1;
-        }
+      toast.success("Товар был добавлен", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
       });
     },
 
-    deletePizzaFromCart(state: CartState, action: PayloadAction<Pizza>) {
-      state.pizzas = state.pizzas?.filter(
-        pizza => pizza.id !== action.payload.id,
+    decreasePizza(state: CartState, action: PayloadAction<CartPizza>) {
+      const pizzasItems = state.pizzas.filter(
+        pizza =>
+          pizza.id === action.payload.id &&
+          pizza.priceValue === action.payload.priceValue,
       );
+
+      if (pizzasItems[0].amount === 1) {
+        state.pizzas = state.pizzas.filter(
+          pizza => pizza.id !== action.payload.id,
+        );
+      } else {
+        pizzasItems[0].amount -= 1;
+      }
+
+      toast.success("Товар был удален", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    },
+
+    deletePizzaFromCart(state: CartState, action: PayloadAction<CartPizza>) {
+      state.pizzas = state.pizzas.filter(
+        pizza =>
+          pizza.id !== action.payload.id &&
+          pizza.priceValue !== action.payload.priceValue,
+      );
+
+      toast.success("Товар был полностью удален", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
     },
   },
 });
