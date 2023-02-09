@@ -8,21 +8,21 @@ const Icons = (): JSX.Element => (
     <a href="http://facebook.com">
       <img
         alt="facebook"
-        className="w-4 h-4"
+        className="h-4 w-4"
         src={facebook}
       />
     </a>
     <a href="http://twitter.com">
       <img
         alt="twitter"
-        className="w-4 h-4"
+        className="h-4 w-4"
         src={twitter}
       />
     </a>
     <a href="http://vk.com">
       <img
         alt="vk"
-        className="w-4 h-4"
+        className="h-4 w-4"
         src={vk}
       />
     </a>

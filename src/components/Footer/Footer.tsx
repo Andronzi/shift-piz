@@ -3,8 +3,8 @@ import Icons from "./items/Icons";
 import Logo from "./items/Logo";
 
 const Footer = (): JSX.Element => (
-  <div className="bg-black w-full px-4">
-    <div className="max-w-screen-xl flex items-center justify-between h-28 mx-auto">
+  <div className="w-full bg-black px-4">
+    <div className="mx-auto flex h-28 max-w-screen-xl items-center justify-between">
       <Logo />
       <Icons />
     </div>
