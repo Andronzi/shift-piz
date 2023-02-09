@@ -12,4 +12,3 @@ const arrayToText = (ingredients: string[]) =>
   }`;
 
 export { arrayToText, arrayToTextWithSlice };
-

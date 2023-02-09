@@ -1,12 +1,12 @@
 import { MetaStateData } from "@src/store/interfaces";
 
-type ISizeType = {
+export type ISizeType = {
   small: number;
   medium: number;
   large: number;
 };
 
-type ICrustType = {
+export type ICrustType = {
   cheesy: number;
   cheesySausage: number;
 };

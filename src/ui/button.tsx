@@ -15,7 +15,7 @@ const Button = ({
   ...props
 }: ButtonProps) => (
   <button
-    className={`${className} font-nunito bg-red-400 text-white px-6 py-2 rounded-2xl laptop:text-md tablet:text-sm phone:text-xs phone:px-4 phone:py-1.5`}
+    className={`rounded-2xl bg-red-400 px-6 py-2 font-nunito text-white phone:px-4 phone:py-1.5 phone:text-xs tablet:text-sm laptop:text-md ${className} `}
     onClick={onClick}
     type={type || "button"}
     {...props}>
