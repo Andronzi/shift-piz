@@ -4,36 +4,30 @@ import { ICrustType, ISizeType } from "@modules/pizzaList/store/interfaces";
 import { useAppDispatch } from "@store/hooks";
 import React from "react";
 
-type Boolean<T> = {
-  readonly [K in keyof T]: boolean;
-};
-
-type PizzaParams = {
-  size: Boolean<ISizeType>;
-  crust: Boolean<ICrustType>;
-};
-
 export const usePizzaParams = (pizza: Pizza) => {
   const dispatch = useAppDispatch();
-  const [pizzaParams, setPizzaParams] = React.useState<PizzaParams>({
+  const [pizzaParams, setPizzaParams] = React.useState<{
+    size: ISizeType;
+    crust: ICrustType;
+  }>({
     size: {
-      small: false,
-      medium: true,
-      large: false,
+      small: 0,
+      medium: pizza.price?.size.medium,
+      large: 0,
     },
     crust: {
-      cheesy: false,
-      cheesySausage: false,
+      cheesy: 0,
+      cheesySausage: 0,
     },
   });
 
   const changeSize = (size: keyof ISizeType) => {
     setPizzaParams(prevState => {
       const sizes = Object.fromEntries(
-        Object.entries(prevState.size).map(value => [value[0], false]),
+        Object.entries(prevState.size).map(([key]) =>
+          key === size ? [key, pizza.price.size[size]] : [key, 0],
+        ),
       );
-
-      sizes[size] = true;
 
       return {
         ...prevState,
@@ -44,15 +38,25 @@ export const usePizzaParams = (pizza: Pizza) => {
 
   const changeCrust = (crustValue: keyof ICrustType) => {
     setPizzaParams(prevState => {
-      const crust = { ...prevState.crust };
+      const newCrust = Object.fromEntries(
+        Object.entries(prevState.crust).map(([key, value]) => {
+          if (key === crustValue && value > 0) {
+            return [key, 0];
+          }
 
-      crust[crustValue] = !crust[crustValue];
+          if (key === crustValue && value === 0) {
+            return [key, pizza.price.crust[crustValue]];
+          }
+
+          return [key, value];
+        }),
+      );
 
       return {
         ...prevState,
         crust: {
           ...prevState.crust,
-          ...crust,
+          ...newCrust,
         },
       };
     });

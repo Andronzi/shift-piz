@@ -9,10 +9,6 @@ import React from "react";
 import { usePizzaParams } from "./hooks/usePizzaParams";
 import Crust from "./items/Crust";
 
-type Boolean<T> = {
-  readonly [K in keyof T]: boolean;
-};
-
 type ModalProps = {
   pizza: Pizza;
   isShow: boolean;
@@ -21,6 +17,11 @@ type ModalProps = {
 
 const Modal = ({ isShow, onClose, pizza }: ModalProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    ref.current?.focus();
+  }, [isShow]);
+
   const { pizzaParams, changeSize, changeCrust, handleButtonClick, calcPrice } =
     usePizzaParams(pizza);
 
@@ -29,10 +30,6 @@ const Modal = ({ isShow, onClose, pizza }: ModalProps) => {
       onClose();
     }
   };
-
-  React.useEffect(() => {
-    ref.current?.focus();
-  }, [isShow]);
 
   if (!isShow) {
     return null;
@@ -91,10 +88,10 @@ const Modal = ({ isShow, onClose, pizza }: ModalProps) => {
             Добавить по вкусу
           </h3>
           <div className="mt-4 flex">
-            {Object.entries(pizzaParams.crust as Boolean<ICrustType>).map(
-              ([key, value]: [string, boolean]) => (
+            {Object.entries(pizzaParams.crust as ICrustType).map(
+              ([key, value]) => (
                 <Crust
-                  isActive={value}
+                  isActive={value > 0}
                   onClick={() => changeCrust(key as keyof ICrustType)}
                   price={pizza.price.crust[key as keyof ICrustType]}
                   src={key}
